@@ -3,6 +3,8 @@ dpf_add_plugin(
     TARGETS jack vst3 clap
     FILES_DSP
         CanWeSynthPlugin.cpp
+    FILES_UI
+        CanWeSynthUI.cpp
 )
 
 target_include_directories(
