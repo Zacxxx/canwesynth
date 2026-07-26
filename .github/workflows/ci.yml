@@ -19,6 +19,7 @@ jobs:
       - run: bun install --frozen-lockfile
       - run: bun run typecheck
       - run: bun test
+      - run: bash tests/install_prefix_test.sh
       - run: bun run build
       - name: Validate Codex plugin
         run: |
