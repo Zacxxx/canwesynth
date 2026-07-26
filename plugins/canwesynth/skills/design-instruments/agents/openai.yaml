@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design Instruments"
+  short_description: "Create and refine CanWeSynth instruments"
+  default_prompt: "Design a playable instrument from my sound description, validate it, and explain the controls."

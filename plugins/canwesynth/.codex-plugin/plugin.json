@@ -1,0 +1,40 @@
+{
+  "name": "canwesynth",
+  "version": "0.1.0",
+  "description": "Design, validate, and safely edit open CanWeSynth instruments with Codex.",
+  "author": {
+    "name": "CanWeSynth Community",
+    "url": "https://github.com/Zacxxx/canwesynth"
+  },
+  "homepage": "https://github.com/Zacxxx/canwesynth",
+  "repository": "https://github.com/Zacxxx/canwesynth",
+  "license": "GPL-3.0-or-later",
+  "keywords": [
+    "audio",
+    "synthesizer",
+    "vst3",
+    "instruments",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "CanWeSynth",
+    "shortDescription": "Vibe-code safe, playable synth instruments.",
+    "longDescription": "Create, inspect, validate, and transactionally edit declarative CanWeSynth instruments through the same operations used by the visual editor.",
+    "developerName": "CanWeSynth Community",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Read",
+      "Write",
+      "Interactive"
+    ],
+    "websiteURL": "https://github.com/Zacxxx/canwesynth",
+    "defaultPrompt": [
+      "Design a warm evolving wavetable pad.",
+      "Explain and improve this instrument.",
+      "Validate my instruments and fix safe issues."
+    ],
+    "brandColor": "#7C5CFC"
+  },
+  "mcpServers": "./.mcp.json"
+}

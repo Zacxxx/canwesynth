@@ -1,0 +1,20 @@
+{
+  "name": "@canwesynth/cli",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "canwesynth": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "bun build src/index.ts --outdir dist --target node",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@canwesynth/instrument-schema": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/bun": "1.2.22",
+    "typescript": "7.0.2"
+  }
+}

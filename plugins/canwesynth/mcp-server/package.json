@@ -1,0 +1,19 @@
+{
+  "name": "@canwesynth/mcp-server",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "bun build src/index.ts --target node --minify --outfile ../dist/canwesynth-mcp.js",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@canwesynth/instrument-schema": "workspace:*",
+    "@modelcontextprotocol/sdk": "1.29.0",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@types/bun": "1.2.22",
+    "typescript": "7.0.2"
+  }
+}

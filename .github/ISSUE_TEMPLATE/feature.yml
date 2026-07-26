@@ -1,0 +1,22 @@
+name: Feature proposal
+description: Propose a focused improvement
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: textarea
+    attributes:
+      label: User problem
+      description: Describe the workflow or sound-design limitation, not only a solution.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Smallest useful version
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Alternatives and prior art
+      description: Link compatible open implementations when relevant.
+  - type: textarea
+    attributes:
+      label: Testing and real-time risks

@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "instruments": {
+      "command": "bash",
+      "args": [
+        "-lc",
+        "exec node \"$PLUGIN_ROOT/dist/canwesynth-mcp.js\""
+      ]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PROJECT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$PROJECT_DIR"
+
+if [[ ! -d build ]]; then
+    make configure
+fi
+cmake --build build --parallel
+exec "$PROJECT_DIR/build/bin/CanWeSynth"
