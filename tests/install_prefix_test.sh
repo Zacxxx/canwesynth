@@ -123,4 +123,19 @@ printf 'windows vst3\n' > "$windows_vst3/Contents/plugin.txt"
 [[ ! -e "$home/.clap/CanWeSynth.clap/CanWeSynth.clap" ]]
 [[ ! -e "$windows_destination/CanWeSynth.vst3" ]]
 
+printf 'existing install\n' > "$home/.vst3/CanWeSynth.vst3/Contents/plugin.txt"
+mkdir -p "$TMP_ROOT/failing-source"
+cp() {
+    return 42
+}
+if copy_bundle "$TMP_ROOT/failing-source" "$home/.vst3/CanWeSynth.vst3"; then
+    printf 'not ok - failed copy unexpectedly succeeded\n' >&2
+    exit 1
+fi
+unset -f cp
+assert_eq \
+    "existing install" \
+    "$(<"$home/.vst3/CanWeSynth.vst3/Contents/plugin.txt")" \
+    "failed replacement preserves the existing install"
+
 printf 'ok - install prefix selection fixtures passed\n'

@@ -28,12 +28,45 @@ find_fl_prefix() {
 copy_bundle() {
     local source="$1"
     local destination="$2"
-    if [[ -e "$source" ]]; then
-        mkdir -p "$(dirname -- "$destination")"
-        rm -rf -- "$destination"
-        cp -a -- "$source" "$destination"
-        printf 'Installed %s\n' "$destination"
+    if [[ ! -e "$source" ]]; then
+        return 0
     fi
+
+    local destination_dir="$(dirname -- "$destination")"
+    local destination_name="$(basename -- "$destination")"
+    local staging_dir
+    local backup_dir=""
+
+    mkdir -p "$destination_dir"
+
+    # Stage the bundle before replacing the current install so a failed copy
+    # cannot erase a working plugin.
+    staging_dir="$(mktemp -d "$destination_dir/.${destination_name}.staging.XXXXXX")"
+    if ! cp -a -- "$source" "$staging_dir/$destination_name"; then
+        rm -rf -- "$staging_dir"
+        return 1
+    fi
+
+    if [[ -e "$destination" || -L "$destination" ]]; then
+        backup_dir="$(mktemp -d "$destination_dir/.${destination_name}.backup.XXXXXX")"
+        if ! mv -- "$destination" "$backup_dir/$destination_name"; then
+            rm -rf -- "$staging_dir" "$backup_dir"
+            return 1
+        fi
+    fi
+
+    if ! mv -- "$staging_dir/$destination_name" "$destination"; then
+        if [[ -n "$backup_dir" ]] && ! mv -- "$backup_dir/$destination_name" "$destination"; then
+            rm -rf -- "$staging_dir"
+            printf 'Could not restore the previous installation at %s\n' "$destination" >&2
+            return 1
+        fi
+        rm -rf -- "$staging_dir" "$backup_dir"
+        return 1
+    fi
+
+    rm -rf -- "$staging_dir" "$backup_dir"
+    printf 'Installed %s\n' "$destination"
 }
 
 main() {
