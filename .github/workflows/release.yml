@@ -17,7 +17,7 @@ jobs:
           submodules: recursive
           fetch-depth: 0
       - run: git archive --format=tar.gz --prefix=canwesynth-${GITHUB_REF_NAME}/ -o canwesynth-${GITHUB_REF_NAME}.tar.gz HEAD
-      - uses: softprops/action-gh-release@v2
+      - uses: softprops/action-gh-release@v3
         with:
           draft: true
           generate_release_notes: true
